@@ -1,0 +1,31 @@
+{
+  "name": "circomspect",
+  "version": "0.0.6",
+  "description": "A static analyzer and linter for the Circom zero-knowledge DSL",
+  "main": "index.js",
+  "keywords": ["cryptography", "static-analysis", "zero-knowledge", "circom"],
+  "scripts": {
+    "test": "node test/test.js",
+    "build": "docker build -o . ..",
+    "build-dev": "rustwasmc build --dev ../cli && cp ../cli/pkg/circomspect.wasm circomspect.wasm"
+  },
+  "repository": "https://github.com/antimatter15/circomspect",
+  "bin": {
+    "circomspect": "./cli.js"
+  },
+  "engines": {
+    "node": ">=15"
+  },
+  "author": "Trail of Bits",
+  "license": "LGPL-3.0-only",
+  "dependencies": {
+    "@wasmer/wasi": "^0.12.0",
+    "path-browserify": "^1.0.1"
+  },
+  "devDependencies": {
+    "@iden3/binfileutils": "^0.0.11",
+    "prettier": "^2.5.1",
+    "r1csfile": "^0.0.41",
+    "rustwasmc": "^0.1.29"
+  }
+}
