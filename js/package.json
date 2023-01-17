@@ -1,6 +1,6 @@
 {
   "name": "circomspect",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "A static analyzer and linter for the Circom zero-knowledge DSL",
   "main": "index.js",
   "keywords": ["cryptography", "static-analysis", "zero-knowledge", "circom"],

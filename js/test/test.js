@@ -41,13 +41,19 @@ async function run() {
 
 test('circomspect command executes', () => {
     const stdout = circomspect('--help')
-    assert(stdout.includes('circomspect [OPTIONS] [INPUT]...'), 'missing stdout')
+    assert(stdout.includes('A static analyzer and linter for Circom programs'), 'missing stdout')
 })
 
 test('basic test', () => {
-    const stdout = circomspect('basic.circom')
+    const stdout = circomspect('--allow P1003 basic.circom')
     assert(stdout.includes('No issues found'), 'expected no issues')
 })
+
+test('tuples test', () => {
+    const stdout = circomspect('--allow CS0017 tuples.circom')
+    assert(stdout.includes('No issues found'), 'expected no issues')
+})
+
 
 test('advanced test', () => {
     try {
