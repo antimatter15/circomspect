@@ -452,7 +452,7 @@ fn remove_anonymous_from_expression(
                     }
                 }
             } else {
-                new_signals = signals.clone();
+                new_signals.clone_from(&signals);
                 for _ in 0..signals.len() {
                     new_operators.push(AssignOp::AssignConstraintSignal);
                 }
@@ -493,7 +493,7 @@ fn remove_anonymous_from_expression(
             }
             let outputs = template.unwrap().get_declaration_outputs();
             if outputs.len() == 1 {
-                let output = outputs.get(0).unwrap().0.clone();
+                let output = outputs[0].0.clone();
                 let mut acc = if var_access.is_none() {
                     Vec::new()
                 } else {
@@ -999,7 +999,8 @@ mod tests {
                 parallel,
                 is_custom_gate,
                 ..
-            } = definition else {
+            } = definition
+            else {
                 unreachable!();
             };
             let template = TemplateData::new(
