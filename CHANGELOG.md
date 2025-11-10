@@ -1,6 +1,25 @@
 # Release Notes
 
-## v0.8.0 (2023-02-16)
+## v0.9.0 (2025-11-10)
+
+### Features
+
+-   Added library search functionality for include resolution. Circomspect can
+    now resolve includes from specified library directories.
+-   Made `parse_file` function public to enable external library usage of the
+    parser.
+
+### Bug Fixes
+
+-   Fixed local includes to work correctly with library resolution.
+-   Fixed various Clippy lints to improve code quality.
+-   Updated clap dependency to version 4.5.
+
+## v0.8.1 (2023-03-21)
+
+-   Updated dependencies flagged by cargo-audit.
+
+## v0.8.0 (2023-03-21)
 
 ### Features
 
@@ -20,6 +39,8 @@
     underlying issue.
 -   Fixed an issue where the cyclomatic complexity calculation could underflow
     in some cases in the `overly-complex-function-or-template` analysis pass.
+-   Fixed an issue in the Sarif export implementation where reporting
+    descriptors were added multiple times.
 
 ## v0.7.2 (2022-12-01)
 

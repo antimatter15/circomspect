@@ -1,5 +1,6 @@
 use anyhow::anyhow;
 use std::cmp::Ordering;
+use std::fmt::Display;
 use std::str::FromStr;
 
 use codespan_reporting::diagnostic::{Diagnostic, Label};
@@ -22,38 +23,36 @@ pub enum MessageCategory {
 /// Message categories are linearly ordered.
 impl PartialOrd for MessageCategory {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        use MessageCategory::*;
-        match (self, other) {
-            // `Info <= _`
-            (Info, Info) => Some(Ordering::Equal),
-            (Info, Warning) | (Info, Error) => Some(Ordering::Less),
-            // `Warning <= _`
-            (Warning, Warning) => Some(Ordering::Equal),
-            (Warning, Error) => Some(Ordering::Less),
-            // `Error <= _`
-            (Error, Error) => Some(Ordering::Equal),
-            // All other cases are on the form `_ >= _`.
-            _ => Some(Ordering::Greater),
-        }
+        Some(self.cmp(other))
     }
 }
 
 impl Ord for MessageCategory {
     fn cmp(&self, other: &Self) -> Ordering {
-        // `MessageCategory::partial_cmp` always returns `Some(_)`.
-        self.partial_cmp(other).unwrap()
+        use MessageCategory::*;
+        match (self, other) {
+            // `Info <= _`
+            (Info, Info) => Ordering::Equal,
+            (Info, Warning) | (Info, Error) => Ordering::Less,
+            // `Warning <= _`
+            (Warning, Warning) => Ordering::Equal,
+            (Warning, Error) => Ordering::Less,
+            // `Error <= _`
+            (Error, Error) => Ordering::Equal,
+            // All other cases are on the form `_ >= _`.
+            _ => Ordering::Greater,
+        }
     }
 }
 
-impl ToString for MessageCategory {
-    fn to_string(&self) -> String {
+impl Display for MessageCategory {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         use MessageCategory::*;
         match self {
-            Error => "error",
-            Warning => "warning",
-            Info => "info",
+            Error => write!(f, "error"),
+            Warning => write!(f, "warning"),
+            Info => write!(f, "info"),
         }
-        .to_string()
     }
 }
 
