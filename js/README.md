@@ -11,6 +11,7 @@ Circomspect currently implements a number of analysis passes which can identify 
 
 ## NPM Package Changelog
 
+-   0.0.9 - Upgrading to v0.9.0 (library search functionality, bug fixes, clap 4.5 update)
 -   0.0.8 - Upgrading to (dev/version-0.8.0)
 -   0.0.7 - Upgrading to (dev/version-0.8.0)
 -   0.0.6 - Upgrading to (dev/version-0.8.0)

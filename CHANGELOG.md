@@ -1,5 +1,20 @@
 # Release Notes
 
+## v0.9.0 (2025-11-10)
+
+### Features
+
+-   Added library search functionality for include resolution. Circomspect can
+    now resolve includes from specified library directories.
+-   Made `parse_file` function public to enable external library usage of the
+    parser.
+
+### Bug Fixes
+
+-   Fixed local includes to work correctly with library resolution.
+-   Fixed various Clippy lints to improve code quality.
+-   Updated clap dependency to version 4.5.
+
 ## v0.8.1 (2023-03-21)
 
 -   Updated dependencies flagged by cargo-audit.
